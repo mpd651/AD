@@ -1,0 +1,17 @@
+    public void NumeroAlumnosCursoAgregate(){
+        MongoCursor cursor = coleccionAlumnos.aggregate(
+                Arrays.asList(
+                        Aggregates.group("$curso", Accumulators.sum("num", 1))
+                )).iterator();
+        
+        while (cursor.hasNext()){
+            Document doc=(Document) cursor.next();
+            String idCurso=doc.getString("_id");
+            Document curso=coleccionCursos.find(eq("_id",idCurso)).first();
+            if (curso!=null){
+                String titCurso=curso.getString("titulo");
+                System.out.println(titCurso +"---"+doc.getInteger("num"));
+            }
+        }
+
+    }

@@ -1,0 +1,6 @@
+String nombre="mario";
+String apellidos="perez";
+String dni="1234a";
+int telefono=12345;
+System.out.printf("%20s, %10s, %9s, %9d", nombre, apellidos, dni, telefono);
+String.format("%20s, %10s, %9s, %9d", nombre, apellidos, dni, telefono);

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<datos>
+        
+    <inmobiliaria id="100">
+                
+        <nombre>InmoSur</nombre>
+                
+        <empleados>20</empleados>
+                
+        <inmuebles>
+                        
+            <inmueble>
+                                
+                <nombre>Piso de 3 dormitorios</nombre>
+                                
+                <precio>150000</precio>
+                                
+                <descripcion>Segunda planta con ascensor</descripcion>
+                            
+            </inmueble>
+                        
+            <inmueble>
+                                
+                <nombre>Piso para reformar</nombre>
+                                
+                <precio>50000</precio>
+                                
+                <descripcion>Primera planta con garaje</descripcion>
+                            
+            </inmueble>
+                    
+        </inmuebles>
+            
+    </inmobiliaria>
+        
+    <inmobiliaria id="110">
+                
+        <nombre>Lo Vendo Todo</nombre>
+                
+        <empleados>35</empleados>
+                
+        <inmuebles>
+                        
+            <inmueble>
+                                
+                <nombre>Plaza de garaje</nombre>
+                                
+                <precio>25000</precio>
+                                
+                <descripcion>Muy espaciosa</descripcion>
+                            
+            </inmueble>
+                        
+            <inmueble>
+                                
+                <nombre>Chalet de lujo</nombre>
+                                
+                <precio>775000</precio>
+                                
+                <descripcion>Excelentes calidades</descripcion>
+                            
+            </inmueble>
+                    
+        </inmuebles>
+            
+    </inmobiliaria>
+    
+</datos>

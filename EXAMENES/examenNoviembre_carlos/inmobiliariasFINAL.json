@@ -1,0 +1,36 @@
+[
+  {
+    "identificador": 110,
+    "nombre": "Lo Vendo Todo",
+    "numeroEmpleados": 35,
+    "inmuebles": [
+      {
+        "nombre": "Plaza de garaje",
+        "precio": 25000.0,
+        "descripcion": "Muy espaciosa"
+      },
+      {
+        "nombre": "Chalet de lujo",
+        "precio": 775000.0,
+        "descripcion": "Excelentes calidades"
+      }
+    ]
+  },
+  {
+    "identificador": 100,
+    "nombre": "InmoSur",
+    "numeroEmpleados": 20,
+    "inmuebles": [
+      {
+        "nombre": "Piso de 3 dormitorios",
+        "precio": 150000.0,
+        "descripcion": "Segunda planta con ascensor"
+      },
+      {
+        "nombre": "Piso para reformar",
+        "precio": 50000.0,
+        "descripcion": "Primera planta con garaje"
+      }
+    ]
+  }
+]

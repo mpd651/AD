@@ -1,0 +1,19 @@
+        try
+        {
+	    File fichero;
+	    Document documento;
+            Source source = new DOMSource(documento);
+            // A partir del fuente se crea el resultado en el archivo
+            Result result = new StreamResult(Files.newBufferedWriter(path));
+
+            // Ahora hay que crear un objeto TransformerFactory para hacer la transformación
+            // y convertir el documento en fichero
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.transform(source, result);
+            return true;
+        } catch (IOException | TransformerException e)
+        {
+            System.err.println("Error al guardar el fichero");
+            return false;
+        }

@@ -1,0 +1,3 @@
+        double altura= (random.nextInt(150)+1)/10.0;
+        double longitud = (random.nextInt(250)+1)/10.0;
+        double peso= (random.nextInt(400000)+1)/10.0;

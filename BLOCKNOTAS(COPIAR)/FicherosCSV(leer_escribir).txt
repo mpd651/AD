@@ -1,0 +1,16 @@
+Path datos = Paths.get("archivo.csv");
+Path nuevo = Paths.get("archivoNuevo.csv");
+try{
+	BufferedWriter escritor= Files.newBufferedWriter(nuevo);
+	BufferedReader lector= Files.newBufferedReader(datos);
+
+	while ((linea=lector.readLine())!=null){
+        	linea=lector.readLine();
+                String[] campos = line.split(",");
+                escritor.write(campos[0]+","+campos[1]+","+campos[2]+","+campos[3]);
+        }
+	lector.close();
+	escritor.close();
+}catch (IOException ex){
+	System.out.println(ex.toString());
+}

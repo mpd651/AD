@@ -1,0 +1,19 @@
+EL ADD TO SET SIRVE PARA METER ALGO A UN ARRAY SI ESTA MISMA ENTIDAD NO ESTA YA DENTRO DEL ARRAY 
+
+	public void AnadirTema(){
+        Scanner teclado=new Scanner(System.in);
+        Scanner tecladoi=new Scanner(System.in);
+        System.out.println("Introduce el id del curso");
+        String id=teclado.nextLine();
+        Document doc=coleccionCursos.find(eq("id",id)).first();
+        
+        if (doc==null){
+            System.out.println("id no existe");
+        }else{
+            System.out.println("Introduce el nombre del tema");
+            String titulo=teclado.nextLine();
+            System.out.println("Introduce el numero de horas");
+            int horas=teclado.nextInt();
+            coleccionCursos.updateOne(eq("id", id), addToSet("temas",new Document("titulo", titulo).append("horas", horas)));
+        }
+    }

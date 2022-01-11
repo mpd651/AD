@@ -1,0 +1,9 @@
+	try ()
+        {
+		BufferedWriter escritor = Files.newBufferedWriter(ficheroJSON)
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                gson.toJson(List<>, escritor);
+        } catch (IOException ex)
+        {
+        	System.out.println(ex.toString());
+        }

@@ -1,0 +1,20 @@
+try
+        {
+            //Se crea un objeto DocumentBuiderFactory.
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            /*Indica que el modelo DOM no debe contemplar los comentarios que tenga el XML. 
+            Es decir, cuando se convierte el XML al modelo DOM los comentarios serán ignorados.*/
+            factory.setIgnoringComments(true);
+            /*Ignora los espacios en blanco. Si no se hace esto entonces los espacios en blanco 
+            aparecen como nodos.*/
+            factory.setIgnoringElementContentWhitespace(true);
+            /*Se crea un objeto DocumentBuilder para cargar en él la estructura de árbol DOM 
+            a partir del XML seleccionado.*/
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //Interpreta (parsea) el documento XML (file) y genera el DOM equivalente.
+            return builder.parse(fichero);
+            //Ahora documento apunta al árbol DOM listo para ser recorrido.
+        } catch (IOException | ParserConfigurationException | SAXException e)
+        {
+            System.err.println("Error al abrir el XML");
+        }

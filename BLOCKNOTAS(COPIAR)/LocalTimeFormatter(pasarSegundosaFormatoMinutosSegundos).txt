@@ -1,0 +1,1 @@
+String duracion =LocalTime.ofSecondOfDay(result.getInt("segundos")).format(DateTimeFormatter.ofPattern("mm:ss"));

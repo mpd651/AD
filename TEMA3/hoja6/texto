@@ -1,0 +1,59 @@
+{
+  "nombre": "Andalucia",
+  "capital": {
+    "nombre": "Sevilla",
+    "habitantes": 690000.0
+  },
+  "provincias": [
+    "Almería",
+    "Cádiz",
+    "Córdoba",
+    "prueba",
+    "Granada",
+    "Huelva",
+    "Jaén",
+    "Sevilla",
+    "Málaga"
+  ],
+  "extension": 87268.0,
+  "habitantes": 8384000.0
+}
+{
+  "nombre": "Aragón",
+  "provincias": [
+    "Huesca",
+    "Teruel",
+    "Zaragoza"
+  ],
+  "habitantes": 1398000.0,
+  "extension": 47720.0,
+  "capital": {
+    "nombre": "Zaragoza",
+    "habitantes": 666000.0
+  }
+}
+{
+  "nombre": "Islas Baleares",
+  "provincias": [
+    "Baleares"
+  ],
+  "extension": 4992.0,
+  "habitantes": 1130000.0,
+  "capital": {
+    "nombre": "Palma de Mallorca",
+    "habitantes": 440000.0
+  }
+}
+{
+  "nombre": "Canarias",
+  "capital": {
+    "nombre": "Santa Cruz de Tenerife",
+    "habitantes": 222000.0
+  },
+  "provincias": [
+    "Las Palmas",
+    "Santa Cruz de Tenerife"
+  ],
+  "extension": 7447.0,
+  "habitantes": 2127000.0
+}

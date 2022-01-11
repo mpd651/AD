@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="2.1" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.2 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2021.10.25 a las 05:13:44 PM CEST 
+
+  -->
+  <jaxb:bindings scd="x-schema::">
+    <jaxb:schemaBindings map="false">
+      <jaxb:package name="ejemploPlugins.jaxb"/>
+    </jaxb:schemaBindings>
+    <jaxb:bindings scd="clientes">
+      <jaxb:class ref="ejemploPlugins.jaxb.Clientes"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="cliente">
+      <jaxb:class ref="ejemploPlugins.jaxb.Cliente"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="validez">
+      <jaxb:class ref="ejemploPlugins.jaxb.Validez"/>
+    </jaxb:bindings>
+    <jaxb:bindings scd="~tipo_estado">
+      <jaxb:typesafeEnumClass ref="ejemploPlugins.jaxb.TipoEstado"/>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>
+

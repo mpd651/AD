@@ -1,0 +1,23 @@
+//consola de linux, comprobamos que docker esta up
+docker ps
+
+//nos movemos a la carpeta donde tengamos los ficheros que queremos copiar a mongo
+cd Descargas/Ficheros-Hoja03_MongoDB_07/
+ls -l
+
+//usamos el comando para copiar a server mongo
+docker cp alumnos.json mongo-server:/root
+docker cp cursos.json mongo-server:/root
+
+//ejecutamos el server de mongo con bash
+docker exec -it mongo-server bash
+
+//dentro del server mongo nos movemos a la carpeta donde hemos copiado los archivos
+cd /root/
+ls -l
+
+//importamos los archivos del server mongo a la base de datos
+mongoimport --authenticationDatabase admin --db formacion --collection alumnos --file alumnos.json --jsonArray -u root
+mongoimport --authenticationDatabase admin --db formacion --collection cursos --file cursos.json --jsonArray -u root
+
+

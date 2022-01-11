@@ -1,0 +1,38 @@
+<departamentos>
+    <departamento>
+        <numero>1</numero>
+        <nombre>Administracion</nombre>
+        <localidad>Torrelavega</localidad>
+        <empleados>30</empleados>
+    </departamento>
+    <departamento>
+        <numero>2</numero>
+        <nombre>Marketing</nombre>
+        <empleados>12</empleados>
+        <localidad>Torrelavega</localidad>
+    </departamento>
+    <departamento>
+        <numero>3</numero>
+        <nombre>Ventas</nombre>
+        <empleados>120</empleados>
+        <localidad>Santander</localidad>
+    </departamento>
+    <departamento>
+        <numero>4</numero>
+        <nombre>Recursos Humanos</nombre>
+        <empleados>3</empleados>
+        <localidad>Santander</localidad>
+    </departamento>  
+    <departamento>
+        <numero>5</numero>
+        <nombre>Compras</nombre>
+        <empleados>32</empleados>
+        <localidad>Santander</localidad>
+    </departamento>
+    <departamento>
+        <numero>6</numero>
+        <nombre>Contabilidad</nombre>
+        <empleados>5</empleados>
+        <localidad>Torrelavega</localidad>
+    </departamento>  
+</departamentos>

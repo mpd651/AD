@@ -1,0 +1,16 @@
+	try
+        {
+            DataInputStream lector = new DataInputStream(new FileInputStream(fichero));
+            while (true)
+            {
+                int identificador = lector.readInt();
+                String nombre = lector.readUTF();
+                int numeroEmpleados = lector.readInt();
+                inmobiliarias.add(new Inmobiliaria(identificador, nombre, numeroEmpleados));
+            }
+        } catch (EOFException ex)
+        {
+        } catch (IOException ex)
+        {
+            System.out.println(ex.toString());
+        }

@@ -1,0 +1,18 @@
+String sql = "INSERT INTO grupos (nombregrupo,localidad,"
+                + "esgrupo,fechaPrimerConcierto,annoPrimerDisco) "
+                + "VALUES (?,?,?,?,?);";
+
+        try ( PreparedStatement consultaPreparada = conexion.prepareStatement(sql))
+
+            consultaPreparada.setString(1, nombre);
+            consultaPreparada.setString(2, localidad);
+            consultaPreparada.setInt(3, esGrupo);
+            consultaPreparada.setString(4, fecha);
+            consultaPreparada.setInt(5, año);
+
+            int numeroGruposInsertados = consultaPreparada.executeUpdate();
+            System.out.println("Se han insertado " + numeroGruposInsertados + " grupos");
+        } catch (SQLException ex)
+        {
+            System.err.println("Error al insertar un grupo");
+        }

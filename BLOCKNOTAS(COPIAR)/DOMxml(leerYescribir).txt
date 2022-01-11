@@ -1,0 +1,24 @@
+        Document documento = this.abrirXML(ficheroXML);
+        NodeList nodosInmuebles = documento.getElementsByTagName("inmueble");
+        for (int i = 0; i < nodosInmuebles.getLength(); i++)
+        {
+            Element elementInmueble = (Element) nodosInmuebles.item(i);
+            Element elementValoracion = (Element) elementInmueble.getElementsByTagName("valoracion").item(0);
+            //Solo en caso de ser nulo creamos el elemento y le anclamos al inmuble
+            if (elementValoracion == null)
+            {
+                elementValoracion = documento.createElement("valoracion");
+                elementInmueble.appendChild(elementValoracion);
+            }
+
+            //Actualizamos el precio en caso de que haya podido cambiar
+            Element elementPrecio = (Element) elementInmueble.getElementsByTagName("precio").item(0);
+            double precio = Double.valueOf(elementPrecio.getTextContent());
+            if (precio < 100000)
+                elementValoracion.setTextContent("Precio bajo");
+            else if (precio > 250000)
+                elementValoracion.setTextContent("Precio alto");
+            else
+                elementValoracion.setTextContent("Precio medio");
+        }
+        this.guardarDOMcomoFILE(ficheroXML, documento);

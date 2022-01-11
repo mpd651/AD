@@ -1,0 +1,7 @@
+mirar lo de insertar y exportar y copiar de java a json.
+docker cp archivo.jason mongo-server:/root -> para copiar un json en mongo.
+
+AD ejercicio 5 mongo
+    en el 2 para acceder a la capital hay que sacar el documento capital y operar con el.
+    en el 6 utilizar el pull para eliminar del array.
+    

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientes xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' 
+        xsi:noNamespaceSchemaLocation='clientes.xsd'>
+  <cliente DNI="72727272G" >
+    <apellidos>ROJAS GARCIA</apellidos>       
+    <CP>39500</CP>
+    <validez estado="borrado" timestamp="1234567890"/>    	
+  </cliente>
+	<cliente DNI="22334455H">
+    <apellidos>MARCOS LOPEZ</apellidos>       
+    <CP>39300</CP>
+    <validez estado="vigente"/>
+  </cliente>
+</clientes>

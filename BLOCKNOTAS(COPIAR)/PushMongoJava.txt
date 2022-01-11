@@ -1,0 +1,26 @@
+EL PUSH SIRVE PARA METER ALGO A UN ARRAY AUNQUE YA ESTE, LO REPITE SI ES NECESARIO. EL PULL LO
+QUITARIA DEL ARRAY
+
+	public void AnadirNotas(){
+        Scanner teclado=new Scanner(System.in);
+        Scanner tecladoi=new Scanner(System.in);
+        System.out.println("Introduce el id del curso");
+        String id=teclado.nextLine();
+        Document doc=coleccionCursos.find(eq("id",id)).first();
+        
+        if (doc==null){
+            System.out.println("id no existe");
+        }else{
+            MongoCursor<Document> cursor=coleccionAlumnos.find(eq("curso", id)).iterator();
+            
+            while (cursor.hasNext()){
+                Document docAlumnos=cursor.next();
+                System.out.println("nombre: "+docAlumnos.getString("nombre")+", Apellidos: "+docAlumnos.getString("apellidos"));
+                System.out.println("Introduce la nota :");
+                int nota=tecladoi.nextInt();
+                String idAlumno=docAlumnos.getString("_id");
+                
+                coleccionAlumnos.updateOne((eq("_id", idAlumno)), push("notas", nota));
+            }
+        }
+    }
