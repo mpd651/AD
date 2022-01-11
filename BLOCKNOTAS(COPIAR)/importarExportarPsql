@@ -1,0 +1,5 @@
+exportar postgresql:
+        docker exec -t postgresql pg_dumpall -c -U postgres > nombreScript.sql
+
+importar postgresql:
+        cat nombreScript.sql | docker exec -i postgresql psql -U postgres
