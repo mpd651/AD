@@ -23,11 +23,7 @@ public class Main {
         int lineasNuevas=llamarProcedimiento(con, jornadaMax);
         System.out.println("Se han añadido "+lineasNuevas+" lineas");
         String nuevosPartidos=obtenerDatosJornada(con, jornadaMax);
-        System.out.println("nuevos partidos \n"+nuevosPartidos);
-        
-        
-        
-        
+        System.out.println("jornada: "+(jornadaMax+1)+", nuevos partidos \n"+nuevosPartidos);
     }
     
     private static int llamarProcedimiento(Connection con, int jornada) throws SQLException{
