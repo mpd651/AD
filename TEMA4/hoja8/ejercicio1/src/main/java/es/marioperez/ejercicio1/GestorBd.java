@@ -159,9 +159,94 @@ public class GestorBd {
     }
     
     public List<Profesor> obtenerProfesoresNoTutores(){
-        String sql="select * from profesor inner join curso not in ";
-        
+        List<Profesor> profesores= new ArrayList();
+        try
+        {
+            String sql="select * from profesor p where p.id not in (select p2.id from profesor p2 inner join curso c on p2.id=c.tutor_id)";
+            Statement consulta=con.createStatement();
+            ResultSet result=consulta.executeQuery(sql);
+            
+            while (result.next()){
+                Profesor p=new Profesor();
+                p.setFecha_nacimiento(result.getDate("fecha_nacimiento").toLocalDate());
+                p.setId(result.getInt("id"));
+                p.setNombre(result.getString("nombre"));
+                p.setCursos(obtenerCursosconProfesor(result.getInt("id")));
+                profesores.add(p);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return profesores;
+    }
+    
+    public Curso obtenerCursoDeAlumno(int idAlumno)
+    {
+        Curso curso=new Curso();
+        try
+        {
+            String sql = "select * from curso where id = (select curso from alumno where id=?)";
+            PreparedStatement consultaPreparada = con.prepareStatement(sql);
+            consultaPreparada.setInt(1, idAlumno);
+            ResultSet result = consultaPreparada.executeQuery(sql);
+            while (result.next()){
+                curso.setAlumnos(obtenerAlumnosCurso(result.getInt("id")));
+                curso.setId(result.getInt("id"));
+                curso.setNombre(result.getString("nombre"));
+                curso.setTutor(obtenerProfesor(result.getInt("tutor_id")));
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return curso;
+    }
+    
+    public Curso obtenerCursoConMasAlumnos(){
+        Curso curso=new Curso();
+        try
+        {
+            String sql="select nombre from curso c where c.id = (select curso from alumno a group by curso order by count(id) desc limit 1)";
+            Statement consulta=con.createStatement();
+            ResultSet result=consulta.executeQuery(sql);
+            
+            while (result.next()){
+                curso.setNombre(result.getString("nombre"));
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return curso;
         
     }
+    
+    public List<Alumno> obtenerAlumnosConMasNota(int numAlumnosMax){
+        List<Alumno> alumnos=new ArrayList();
+        String sql= "select * from alumno a order by nota_media desc limit ?";
+        PreparedStatement consultaPreparada;
+        try
+        {
+            consultaPreparada = con.prepareStatement(sql);
+            consultaPreparada.setInt(1, numAlumnosMax);
+            ResultSet result=consultaPreparada.executeQuery();
+            
+            while (result.next()){
+                Alumno a=new Alumno();
+                a.setId(result.getInt("id"));
+                a.setNombre(result.getString("nombre"));
+                a.setNota_media(result.getString("nota_media"));
+                a.setCurso(obtenerCursoDeAlumno(result.getInt("id")));
+                alumnos.add(a);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumnos;
+    }
+
+    
     
 }

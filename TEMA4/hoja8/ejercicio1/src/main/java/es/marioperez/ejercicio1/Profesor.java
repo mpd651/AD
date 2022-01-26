@@ -58,6 +58,12 @@ public class Profesor {
     {
         this.fecha_nacimiento = fecha_nacimiento;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Profesor{" + "id=" + id + ", nombre=" + nombre + ", fecha_nacimiento=" + fecha_nacimiento + ", cursos=" + cursos + '}';
+    }
     
     
 }
