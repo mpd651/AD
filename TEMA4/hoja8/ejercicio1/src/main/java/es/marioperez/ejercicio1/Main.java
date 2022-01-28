@@ -65,17 +65,56 @@ public class Main
                     
                     
                 case 4:
+                    List<Profesor> profesoresSinTutor=gestor.obtenerProfesoresNoTutores();
+                    for (Profesor p: profesoresSinTutor){
+                        System.out.println(p.toString());
+                    }
                     break;
+                    
                 case 5:
+                    List<Curso> cursos5=gestor.obtenerCursos();
+                    System.out.println("Lista de cursos");
+                    for (Curso c: cursos5){
+                        System.out.println("Nombre: "+c.getNombre()+", Alumnos: "+c.getAlumnos().size());
+                    }
                     break;
+                    
                 case 6:
+                    System.out.println("Introduce un numero de alumnos limite:");
+                    int numAlumnos=tecladoi.nextInt();
+                    List<Curso> cursos6=gestor.obtenerCursos();
+                    System.out.println("Lista de cursos con menos de "+numAlumnos+" alumnos");
+                    for (Curso c: cursos6){
+                        if (c.getAlumnos().size()<numAlumnos){
+                            System.out.println(c.toString());
+                        }
+                    }
                     break;
+                    
                 case 7:
+                    System.out.println("Introduce un id de alumno");
+                    int idAlumno=tecladoi.nextInt();
+                    System.out.println("Alumnos del mismo curso");
+                    Curso curso=gestor.obtenerCursoDeAlumno(idAlumno);
+                    for (Alumno a: curso.getAlumnos()){
+                        System.out.println(a.getNombre());
+                    }
                     break;
+                    
                 case 8:
+                    Curso curso8=gestor.obtenerCursoConMasAlumnos();
+                    System.out.println("Curso con mas alumnos: "+curso8.getNombre());
                     break;
+                    
                 case 9:
+                    System.out.println("Indica numero de alumnos a mostrar:");
+                    int numAlumnos9=tecladoi.nextInt();
+                    List <Alumno> alumnos=gestor.obtenerAlumnosConMasNota(numAlumnos9);
+                    for (Alumno a: alumnos){
+                        System.out.println(a.toString());
+                    }
                     break;
+                    
                 case 0:
                     break;
             }       
