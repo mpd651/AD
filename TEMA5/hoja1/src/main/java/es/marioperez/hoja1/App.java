@@ -28,7 +28,6 @@ public class App
         // Construimos un objeto Alumno
         Empleado empleado1= new Empleado();
         empleado1.setFechaAlta(LocalDate.now());
-        empleado1.setId(1L);
         empleado1.setNombre("mario");
         empleado1.setOficio("programador");
         empleado1.setSalario(1500);
@@ -36,7 +35,6 @@ public class App
         // Construimos otro objeto Alumno
         Empleado empleado2= new Empleado();
         empleado2.setFechaAlta(LocalDate.now());
-        empleado2.setId(2L);
         empleado2.setNombre("pepe");
         empleado2.setOficio("panadero");
         empleado2.setSalario(5000);
