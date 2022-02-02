@@ -23,11 +23,11 @@ public class GestorBd {
     }
     
     
-    public String obtenerProfesorDeCurso (int idCurso){
+    public String obtenerProfesorDeCurso (String idCurso){
         String nombreProfe="";
         String sql="select profesor.nombre from profesor inner join curso where curso.id=?";
         try ( PreparedStatement consultaPreparada = con.prepareStatement(sql)){
-            consultaPreparada.setInt(1, idCurso);
+            consultaPreparada.setString(1, idCurso);
             ResultSet result=consultaPreparada.executeQuery();
             while (result.next()){
                 nombreProfe=result.getString("nombre");
@@ -49,10 +49,10 @@ public class GestorBd {
             
             while (result.next()){
                 Curso curso=new Curso();
-                curso.setId(result.getInt("id"));
+                curso.setId(result.getString("id"));
                 curso.setNombre(result.getString("nombre"));
                 curso.setTutor(null);
-                curso.setAlumnos(obtenerAlumnosCurso(result.getInt("id")));
+                curso.setAlumnos(obtenerAlumnosCurso(result.getString("id")));
                 cursos.add(curso);
             }
             
@@ -73,10 +73,35 @@ public class GestorBd {
             ResultSet result = consulta.executeQuery(sql);
             while (result.next()){
                 Curso curso=new Curso();
-                curso.setAlumnos(obtenerAlumnosCurso(result.getInt("id")));
-                curso.setId(result.getInt("id"));
+                String id=result.getString("id");
+                curso.setId(id);
                 curso.setNombre(result.getString("nombre"));
                 curso.setTutor(obtenerProfesor(result.getInt("tutor_id")));
+                curso.setAlumnos(obtenerAlumnosCurso(id));
+                cursos.add(curso);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cursos;
+    }
+    
+    public List<Curso> obtenerCursosSinAlumnos()
+    {
+        List<Curso> cursos = new ArrayList();
+        try
+        {
+            String sql = "select * from curso c where c.id not in (SELECT c2.id from curso c2 inner join alumno a on c2.id=a.curso)";
+            Statement consulta = con.createStatement();
+            ResultSet result = consulta.executeQuery(sql);
+            while (result.next()){
+                Curso curso=new Curso();
+                String id=result.getString("id");
+                curso.setId(id);
+                curso.setNombre(result.getString("nombre"));
+                //curso.setTutor(obtenerProfesor(result.getInt("tutor_id")));
+                //curso.setAlumnos(obtenerAlumnosCurso(id));
                 cursos.add(curso);
             }
         } catch (SQLException ex)
@@ -93,13 +118,13 @@ public class GestorBd {
         {
             String sql = "select * from curso where tutor_id='"+idProfesor+"'";
             Statement consulta = con.createStatement();
-            ResultSet result = consulta.executeQuery(sql);
-            while (result.next()){
+            ResultSet result2 = consulta.executeQuery(sql);
+            while (result2.next()){
                 Curso curso=new Curso();
-                curso.setAlumnos(obtenerAlumnosCurso(result.getInt("id")));
-                curso.setId(result.getInt("id"));
-                curso.setNombre(result.getString("nombre"));
-                curso.setTutor(obtenerProfesor(result.getInt("tutor_id")));
+                curso.setAlumnos(obtenerAlumnosCurso(result2.getString("id")));
+                curso.setId(result2.getString("id"));
+                curso.setNombre(result2.getString("nombre"));
+                curso.setTutor(obtenerProfesor(result2.getInt("tutor_id")));
                 cursos.add(curso);
             }
         } catch (SQLException ex)
@@ -111,20 +136,20 @@ public class GestorBd {
     
     
     
-    public List<Alumno> obtenerAlumnosCurso(int cursoId){
+    public List<Alumno> obtenerAlumnosCurso(String cursoId){
         List<Alumno> alumnos=new ArrayList();
         
         try{
             String sql="select * from alumno where curso=?";
             PreparedStatement consultaPreparada = con.prepareStatement(sql);
-            consultaPreparada.setInt(1, cursoId);
+            consultaPreparada.setString(1, cursoId);
             ResultSet result=consultaPreparada.executeQuery();
             
             while (result.next()){
                 Alumno alumno=new Alumno();
                 alumno.setId(result.getInt("id"));
                 alumno.setNombre(result.getString("nombre"));
-                alumno.setNota_media(result.getString("nota_media"));
+                alumno.setNota_media(result.getFloat("nota_media"));
                 alumnos.add(alumno);
             }
         } catch (SQLException ex)
@@ -191,8 +216,8 @@ public class GestorBd {
             consultaPreparada.setInt(1, idAlumno);
             ResultSet result = consultaPreparada.executeQuery(sql);
             while (result.next()){
-                curso.setAlumnos(obtenerAlumnosCurso(result.getInt("id")));
-                curso.setId(result.getInt("id"));
+                curso.setAlumnos(obtenerAlumnosCurso(result.getString("id")));
+                curso.setId(result.getString("id"));
                 curso.setNombre(result.getString("nombre"));
                 curso.setTutor(obtenerProfesor(result.getInt("tutor_id")));
             }
@@ -236,7 +261,7 @@ public class GestorBd {
                 Alumno a=new Alumno();
                 a.setId(result.getInt("id"));
                 a.setNombre(result.getString("nombre"));
-                a.setNota_media(result.getString("nota_media"));
+                a.setNota_media(result.getFloat("nota_media"));
                 a.setCurso(obtenerCursoDeAlumno(result.getInt("id")));
                 alumnos.add(a);
             }

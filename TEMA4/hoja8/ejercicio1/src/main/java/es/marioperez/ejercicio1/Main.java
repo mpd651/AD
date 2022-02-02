@@ -14,6 +14,7 @@ public class Main
     public static void main(String[] args)
     {
         Scanner tecladoi = new Scanner(System.in);
+        Scanner teclados=new Scanner(System.in);
         GestorBd gestor = new GestorBd();
 
         int opcion = 0;
@@ -36,7 +37,7 @@ public class Main
             {
                 case 1:
                     System.out.println("Introduce el id de un curso del que saber el profesor");
-                    int idCurso=tecladoi.nextInt();
+                    String idCurso=teclados.nextLine();
                     String nombreProfe=gestor.obtenerProfesorDeCurso(idCurso);
                     if (!nombreProfe.equalsIgnoreCase("")){
                         System.out.println("El nombre del profesor es "+nombreProfe);
@@ -46,20 +47,17 @@ public class Main
                     break;
                     
                 case 2:
-                    List<Curso> cursosSinTutor=new ArrayList();
+                    List<Curso> cursosSinTutor=gestor.obtenerCursosSinTutor();
                     System.out.println("Cursos sin tutor:");
                     for(Curso c:cursosSinTutor){
                         System.out.println(c.toString());
                     }
-                    
                     break;
                     
                 case 3:
-                    List<Curso> cursos=gestor.obtenerCursos();
+                    List<Curso> cursos=gestor.obtenerCursosSinAlumnos();
                     for (Curso c: cursos){
-                        if (c.getAlumnos().size()==0){
-                            System.out.println(c.toString());
-                        }
+                        System.out.println(c.toString());
                     }
                     break;
                     

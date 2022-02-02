@@ -7,7 +7,7 @@ import java.util.List;
  * @author usuario
  */
 public class Curso {
-    public int id;
+    public String id;
     public String nombre;
     public Profesor tutor;
     public List<Alumno> alumnos;
@@ -33,7 +33,7 @@ public class Curso {
     }
     
 
-    public int getId()
+    public String getId()
     {
         return id;
     }
@@ -48,7 +48,7 @@ public class Curso {
         return tutor;
     }
 
-    public void setId(int id)
+    public void setId(String id)
     {
         this.id = id;
     }

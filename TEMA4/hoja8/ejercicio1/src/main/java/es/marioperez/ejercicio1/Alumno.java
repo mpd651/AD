@@ -7,7 +7,7 @@ package es.marioperez.ejercicio1;
 public class Alumno {
     public int id;
     public String nombre;
-    public String nota_media;
+    public float nota_media;
     public Curso curso;
 
     public Alumno()
@@ -24,7 +24,7 @@ public class Alumno {
         return nombre;
     }
 
-    public String getNota_media()
+    public float getNota_media()
     {
         return nota_media;
     }
@@ -44,7 +44,7 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-    public void setNota_media(String nota_media)
+    public void setNota_media(float nota_media)
     {
         this.nota_media = nota_media;
     }
@@ -52,6 +52,12 @@ public class Alumno {
     public void setCurso(Curso curso)
     {
         this.curso = curso;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", nota_media=" + nota_media + ", curso=" + curso + '}';
     }
     
     
