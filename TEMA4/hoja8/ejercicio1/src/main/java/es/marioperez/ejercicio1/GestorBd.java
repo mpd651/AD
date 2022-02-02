@@ -63,6 +63,43 @@ public class GestorBd {
         return cursos;
     }
     
+    public String obtenerCursosYAlumnos(){
+        String cursos="";
+        try
+        {
+            String sql="select c.nombre, COUNT(a.id) as alumnos from curso c left join alumno a on c.id =a.curso GROUP BY c.id ";
+            Statement st=con.createStatement();
+            ResultSet result=st.executeQuery(sql);
+            while (result.next()){
+                cursos=cursos+"Curso: "+result.getString("nombre");
+                cursos=cursos+", alumnos: "+result.getInt("alumnos")+"\n";
+                
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cursos;
+    }
+    
+    public String obtenerCursosConMenosAlumnosQue(int alumnos){
+        String cursos="Cursos con menos alumnos que "+alumnos+"\n";
+        try
+        {
+            String sql="select c.nombre, COUNT(a.id) as alumnos from curso c left join alumno a on c.id =a.curso GROUP BY c.id HAVING alumnos < ?";
+            PreparedStatement st=con.prepareStatement(sql);
+            st.setInt(1, alumnos);
+            ResultSet result=st.executeQuery();
+            while (result.next()){
+                cursos=cursos+result.getString("nombre")+"\n";
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cursos;
+    }
+    
     public List<Curso> obtenerCursos()
     {
         List<Curso> cursos = new ArrayList();

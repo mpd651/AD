@@ -70,23 +70,16 @@ public class Main
                     break;
                     
                 case 5:
-                    List<Curso> cursos5=gestor.obtenerCursos();
+                    String cursosYalumnos=gestor.obtenerCursosYAlumnos();
                     System.out.println("Lista de cursos");
-                    for (Curso c: cursos5){
-                        System.out.println("Nombre: "+c.getNombre()+", Alumnos: "+c.getAlumnos().size());
-                    }
+                    System.out.println(cursosYalumnos);
                     break;
                     
                 case 6:
                     System.out.println("Introduce un numero de alumnos limite:");
                     int numAlumnos=tecladoi.nextInt();
-                    List<Curso> cursos6=gestor.obtenerCursos();
-                    System.out.println("Lista de cursos con menos de "+numAlumnos+" alumnos");
-                    for (Curso c: cursos6){
-                        if (c.getAlumnos().size()<numAlumnos){
-                            System.out.println(c.toString());
-                        }
-                    }
+                    String cursosConMenosAlumnos=gestor.obtenerCursosConMenosAlumnosQue(numAlumnos);
+                    System.out.println(cursosConMenosAlumnos);
                     break;
                     
                 case 7:
