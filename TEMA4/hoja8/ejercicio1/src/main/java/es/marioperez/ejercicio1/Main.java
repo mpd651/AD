@@ -86,8 +86,8 @@ public class Main
                     System.out.println("Introduce un id de alumno");
                     int idAlumno=tecladoi.nextInt();
                     System.out.println("Alumnos del mismo curso");
-                    Curso curso=gestor.obtenerCursoDeAlumno(idAlumno);
-                    for (Alumno a: curso.getAlumnos()){
+                    List<Alumno> alumnos=gestor.obtenerCompaneroCurso(idAlumno);
+                    for (Alumno a: alumnos){
                         System.out.println(a.getNombre());
                     }
                     break;
@@ -100,8 +100,8 @@ public class Main
                 case 9:
                     System.out.println("Indica numero de alumnos a mostrar:");
                     int numAlumnos9=tecladoi.nextInt();
-                    List <Alumno> alumnos=gestor.obtenerAlumnosConMasNota(numAlumnos9);
-                    for (Alumno a: alumnos){
+                    List <Alumno> alumnosMasNota=gestor.obtenerAlumnosConMasNota(numAlumnos9);
+                    for (Alumno a: alumnosMasNota){
                         System.out.println(a.toString());
                     }
                     break;
@@ -111,8 +111,5 @@ public class Main
             }       
             
         } while (opcion!=0);
-        
-        
-        
     }
 }

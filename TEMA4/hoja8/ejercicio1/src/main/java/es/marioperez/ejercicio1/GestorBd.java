@@ -243,15 +243,39 @@ public class GestorBd {
         return profesores;
     }
     
+    public List<Alumno> obtenerCompaneroCurso(int idAlumno)
+    {
+        List<Alumno> alumnos=new ArrayList();
+        try
+        {
+            String sql = "select * from alumno a WHERE curso = (select curso from alumno a2 where a2.id="+idAlumno+")";
+            Statement consulta=con.createStatement();
+            ResultSet result=consulta.executeQuery(sql);
+            while (result.next()){
+                Alumno a=new Alumno();
+                a.setId(result.getInt("id"));
+                a.setNombre(result.getString("nombre"));
+                a.setNota_media(result.getFloat("nota_media"));
+                Curso c=new Curso();
+                c.setId(result.getString("curso"));
+                a.setCurso(c);
+                alumnos.add(a);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(GestorBd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return alumnos;
+    }
+    
     public Curso obtenerCursoDeAlumno(int idAlumno)
     {
         Curso curso=new Curso();
         try
         {
-            String sql = "select * from curso where id = (select curso from alumno where id=?)";
-            PreparedStatement consultaPreparada = con.prepareStatement(sql);
-            consultaPreparada.setInt(1, idAlumno);
-            ResultSet result = consultaPreparada.executeQuery(sql);
+            String sql = "select * from alumno a WHERE curso = (select curso from alumno a2 where a2.id="+idAlumno+")";
+            Statement consulta=con.createStatement();
+            ResultSet result=consulta.executeQuery(sql);
             while (result.next()){
                 curso.setAlumnos(obtenerAlumnosCurso(result.getString("id")));
                 curso.setId(result.getString("id"));

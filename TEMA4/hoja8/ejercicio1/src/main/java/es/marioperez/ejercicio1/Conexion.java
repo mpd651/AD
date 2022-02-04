@@ -11,6 +11,7 @@ import java.sql.SQLException;
 public class Conexion {
     private static Conexion instance;
     private Connection connection;
+    //private String urlPostgres= "jdbc:postgresql://localhost:5432/baseDatos";
     private String url = "jdbc:mariadb://localhost:3310/cursos";
     private String usuario = "root";
     private String contra = "root";
@@ -19,6 +20,7 @@ public class Conexion {
     {
         try
         {
+            //Class.forName("org.postgresql.Driver");
             Class.forName("org.mariadb.jdbc.Driver"); //Driver
             connection = DriverManager.getConnection(url, usuario, contra);
             System.out.println("Conexion OK");
