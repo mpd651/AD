@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Estudio {
 	
 	
 	@ManyToMany(mappedBy = "estudios")
-	private List<Empleado> empleados;
+	private List<Empleado> empleados= new ArrayList();
 	
 	public Estudio() {
 		

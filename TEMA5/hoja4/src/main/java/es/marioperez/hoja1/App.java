@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import modelo.Departamento;
 import modelo.Empleado;
+import modelo.Estudio;
 import modelo.Sueldo;
 
 /**
@@ -28,6 +29,12 @@ public class App
         em.getTransaction().begin();
         
         // Construimos objetos empleado
+        Estudio eso=new Estudio();
+        eso.setNombre("eso");
+        
+        Estudio bachiller=new Estudio();
+        bachiller.setNombre("bachiller");
+        
         Empleado empleado1= new Empleado();
         empleado1.setFechaAlta(LocalDate.now());
         empleado1.setNombre("mario");
@@ -35,6 +42,8 @@ public class App
         Sueldo s1=new Sueldo();
         s1.setSalario(1500);
         empleado1.setSueldo(s1);
+        empleado1.addEstudio(eso);
+        empleado1.addEstudio(bachiller);
 
         Empleado empleado2= new Empleado();
         empleado2.setFechaAlta(LocalDate.now());
@@ -43,6 +52,8 @@ public class App
         Sueldo s2=new Sueldo();
         s2.setSalario(5000);
         empleado2.setSueldo(s2);
+        empleado2.addEstudio(eso);
+        empleado2.addEstudio(bachiller);
         
         Empleado empleado3= new Empleado();
         empleado3.setFechaAlta(LocalDate.now());
@@ -59,6 +70,8 @@ public class App
         Sueldo s4=new Sueldo();
         s4.setSalario(10000);
         empleado4.setSueldo(s4);
+        
+       
         
         
         //Construimos objetos departamento y añadimos empleados

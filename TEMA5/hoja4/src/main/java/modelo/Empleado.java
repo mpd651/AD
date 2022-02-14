@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="empelados")
+@Table(name="empleados")
 public class Empleado {
 	
 	@Id
@@ -43,7 +44,7 @@ public class Empleado {
 	@JoinTable(name="empleados_estudios", joinColumns = 
 		{@JoinColumn(name="empleado_id")}, inverseJoinColumns =
 		{ @JoinColumn(name = "estudio_id") })
-	private List<Estudio> estudios;
+	private List<Estudio> estudios=new ArrayList();
 	
 	
 	
