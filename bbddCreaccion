@@ -1,0 +1,21 @@
+CREATE DATABASE `tpvHosteleria` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+-- tpvHosteleria.mesas definition
+
+CREATE TABLE `mesas` (
+  `mesaId` int(11) NOT NULL AUTO_INCREMENT,
+  `numeroSillas` int(11) NOT NULL,
+  PRIMARY KEY (`mesaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+-- tpvHosteleria.tickets definition
+
+CREATE TABLE `tickets` (
+  `TicketId` int(11) NOT NULL AUTO_INCREMENT,
+  `mesaId` int(11) NOT NULL,
+  `horaPagado` time NOT NULL,
+  `Importe` float NOT NULL,
+  `fechaTicket` date NOT NULL,
+  PRIMARY KEY (`TicketId`),
+  KEY `tickets_FK` (`mesaId`),
+  CONSTRAINT `tickets_FK` FOREIGN KEY (`mesaId`) REFERENCES `mesas` (`mesaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
